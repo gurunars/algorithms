@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Configure python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: '21'
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install deps
+        run: poetry install
+
+      - name: Build
+        run: make
+
+      - name: Configure GIT
+        run: |
+          git config --global user.email "gurunars@gmail.com"
+          git config --global user.name "Anton Berezin"
+
+      - name: Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mv ./build /tmp
+          cd /tmp/build
+          git init
+          git add .
+          git commit -am init
+          git checkout -b gh-pages
+          git push --force https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/gurunars/algorithms.git gh-pages

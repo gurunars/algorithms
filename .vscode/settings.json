@@ -1,0 +1,27 @@
+{
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.completeFunctionParens": true,
+    "python.pythonPath": ".venv/bin/python",
+    "python.formatting.blackPath": ".venv/bin/black",
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "python.testing.pytestPath": ".venv/bin/pytest",
+    "python.testing.pytestEnabled": true,
+    "restructuredtext.confPath": "",
+    "restructuredtext.languageServer.disabled": true,
+    "files.associations": {
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "*.cph": "cpp",
+        "tuple": "cpp"
+    },
+    "python.testing.pytestArgs": [
+        "cses"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "restructuredtext.syntaxHighlighting.disabled": true
+}
