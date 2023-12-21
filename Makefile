@@ -1,6 +1,5 @@
 docs: .utils
 	poetry run sphinx-build algorithms build
-	touch build/.nojekyll
 
 check: lint test
 
