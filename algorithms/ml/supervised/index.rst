@@ -1,0 +1,7 @@
+Supervised
+==========
+
+.. toctree::
+
+   linear-regression
+

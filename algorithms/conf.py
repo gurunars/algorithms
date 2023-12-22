@@ -12,3 +12,4 @@ extensions = [
     'sphinx.ext.mathjax'
 ]
 plantuml = 'java -jar ../.utils/plantuml.jar'
+html_show_sphinx = False

@@ -8,8 +8,6 @@
     "editor.formatOnSave": true,
     "python.testing.pytestPath": ".venv/bin/pytest",
     "python.testing.pytestEnabled": true,
-    "restructuredtext.confPath": "",
-    "restructuredtext.languageServer.disabled": true,
     "files.associations": {
         "*.tcc": "cpp",
         "deque": "cpp",
@@ -22,6 +20,12 @@
         "cses"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
-    "restructuredtext.syntaxHighlighting.disabled": true
+    "restructuredtext.syntaxHighlighting.disabled": true,
+    "esbonio.sphinx.confDir": "${workspaceFolder}/algorithms",
+    "esbonio.sphinx.buildDir": "${workspaceFolder}/build",
+    "esbonio.sphinx.srcDir": "${workspaceFolder}/algorithms",
+    "restructuredtext.linter.doc8.executablePath": "${workspaceFolder}/.venv/bin/dock8",
+    "restructuredtext.linter.rstcheck.executablePath": "${workspaceFolder}/.venv/bin/rstcheck",
+    "restructuredtext.linter.rst-lint.executablePath": "${workspaceFolder}/.venv/bin/rst-lint",
+    "restructuredtext.linter.run": "onType"
 }
