@@ -3,5 +3,4 @@ Supervised
 
 .. toctree::
 
-   linear-regression
-
+   gradient-descent
