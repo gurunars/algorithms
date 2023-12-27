@@ -6,17 +6,17 @@ authors = ["Anton Berezin <gurunars@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.3"
+pyright = "^1.1.343"
+black = "^23.12.1"
 sphinx = "^7.2.6"
 sphinxcontrib-plantuml = "^0.27"
 sphinx-rtd-theme = "^2.0.0"
 esbonio = "^0.16.3"
 doc8 = "^1.1.1"
 rstcheck = "^6.2.0"
-
-[tool.poetry.dev-dependencies]
-pytest = "^5.2"
-pyright = "^0.0.1"
-black = "^21.6b0"
 
 [tool.pyright]
 include = ["algorithms"]
