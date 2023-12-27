@@ -81,7 +81,7 @@ Total derivative
 
 .. math::
 
-    f'(x_1, \ldots, x_n) = \sum_{i=1}^{n} f_{x_i}'
+    f'(x_1, \ldots, x_n) = \sum_{i=1}^{n} f_{x_i}'(x_1, \ldots, x_n)
 
 Partial derivative
 ------------------

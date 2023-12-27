@@ -27,5 +27,7 @@
     "restructuredtext.linter.doc8.executablePath": "${workspaceFolder}/.venv/bin/dock8",
     "restructuredtext.linter.rstcheck.executablePath": "${workspaceFolder}/.venv/bin/rstcheck",
     "restructuredtext.linter.rst-lint.executablePath": "${workspaceFolder}/.venv/bin/rst-lint",
-    "restructuredtext.linter.run": "onType"
+    "restructuredtext.linter.run": "onType",
+    "files.trimTrailingWhitespace": true,
+    "editor.renderWhitespace": "all"
 }
