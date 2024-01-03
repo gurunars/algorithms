@@ -18,10 +18,10 @@ A partial derrivative with respect to :math:`w_j` is:
 
 .. math::
 
-  J_{w_j}'(xy, f) =  \frac{\sum_{i=0}^{|xy|}(f(xy[i].x) - xy[i].y)^2 * xy[i].x[j]}{|xy|}
+  J_{w_j}'(xy, f) =  \frac{\sum_{i=0}^{|xy|}(f(xy[i].x) - xy[i].y) * xy[i].x[j]}{|xy|}
 
 A partial derrivative with respect to :math:`b` is:
 
 .. math::
 
-  J_{b}'(xy, f) = \frac{\sum_{i=0}^{|xy|}(f(xy[i].x) - xy[i].y)^2}{|xy|}
+  J_{b}'(xy, f) = \frac{\sum_{i=0}^{|xy|}f(xy[i].x) - xy[i].y}{|xy|}
