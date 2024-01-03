@@ -4,6 +4,8 @@ from dataclasses import dataclass
 
 from statistics import mean, stdev
 
+from math import exp
+
 Num = float
 
 Features = Input = List[Num]
@@ -65,6 +67,54 @@ def linear_model_function_formula(
         pair[0] * pair[1]
         for pair in zip(weights, input)
     )
+
+
+def sigmoid(x: Num):
+    """
+    >>> round(sigmoid(10), 2)
+    1.0
+
+    >>> round(sigmoid(-10), 2)
+    0.0
+
+    >>> round(sigmoid(-10), 2)
+    0.0
+
+    >>> round(sigmoid(-0.5), 2)
+    0.38
+
+    >>> round(sigmoid(0.5), 2)
+    0.62
+    """
+    return 1 / (1 + exp(-x))
+
+
+def logistics_model_function_formula(
+    weights: Weights,
+    bias: Bias,
+    input: Input
+) -> Output:
+    """
+    >>> logistics_model_function_formula(
+    ...     weights = [1, 2, 3],
+    ...     bias = 2,
+    ...     input = [4, 5, 7]
+    ... )
+    1.0
+
+    >>> round(logistics_model_function_formula(
+    ...     weights = [-1, -2, -3],
+    ...     bias = -1,
+    ...     input = [4, 5, 7]
+    ... ), 2)
+    0.0
+    """
+    y = linear_model_function_formula(
+        weights=weights,
+        bias=bias,
+        input=input
+    )
+    return sigmoid(y)
 
 
 def get_minmax_feature_scaling_function(numbers: Input) -> FeatureScalingFunction:
@@ -178,11 +228,13 @@ def get_example_scaling_function(
 def descend(
     model_function: ModelFunction,
     learning_rate: Num,
+    regularization_rate: Num,
     examples: List[Example]
 ) -> ModelFunction:
     """
     >>> descend(
     ...     learning_rate = 1,
+    ...     regularization_rate = 1,
     ...     model_function = ModelFunction(
     ...         weights = [0],
     ...         bias = 0,
@@ -190,10 +242,11 @@ def descend(
     ...     ),
     ...     examples = [Example([1], 300), Example([2], 500)]
     ... )
-    ModelFunction([650], 400, linear_model_function_formula)
+    ModelFunction([650.0], 400.0, linear_model_function_formula)
 
     >>> descend(
     ...     learning_rate = 1,
+    ...     regularization_rate = 1,
     ...     model_function = ModelFunction(
     ...         weights = [0],
     ...         bias = 0,
@@ -202,9 +255,23 @@ def descend(
     ...     examples = [Example([1], 300), Example([2], 500), Example([3], 650), Example([4], 900)]
     ... )
     ModelFunction([1712.5], 587.5, linear_model_function_formula)
+
+    >>> descend(
+    ...     learning_rate = 0.1,
+    ...     regularization_rate = 0.1,
+    ...     model_function = ModelFunction(
+    ...         weights = [10],
+    ...         bias = 21,
+    ...         formula = linear_model_function_formula
+    ...     ),
+    ...     examples = [Example([1], 300), Example([2], 500), Example([3], 650), Example([4], 900)]
+    ... )
+    ModelFunction([168.475], 75.09750000000001, linear_model_function_formula)
     """
+    factor = 1 - learning_rate * (regularization_rate / len(examples))
+
     def compute(w: Num, d: Num) -> Num:
-        return w - learning_rate * d
+        return w * factor - learning_rate * d
 
     deltas = [model_function(ex.features) - ex.label for ex in examples]
     return ModelFunction(
@@ -265,6 +332,7 @@ def gradient_descent(
     examples: List[Example],
     iter_limit: int=100,
     learning_rate: Num=0.1,
+    regularization_rate: Num = 0.01,
 ) -> ModelFunction:
     costs: List[Num] = []
     scale = get_example_scaling_function(
@@ -275,9 +343,10 @@ def gradient_descent(
         if converged(costs):
             break
         model_function = descend(
-            model_function,
-            learning_rate,
-            examples
+            model_function=model_function,
+            learning_rate=learning_rate,
+            regularization_rate=regularization_rate,
+            examples=examples
         )
         costs.append(get_cost(
             model_function,

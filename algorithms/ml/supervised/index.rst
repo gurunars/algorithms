@@ -3,6 +3,8 @@ Supervised
 
 .. toctree::
 
-   model-function
-   cost-function
    gradient-descent
+   scaling
+   classification
+   linear-regression
+   term-substitution-example
