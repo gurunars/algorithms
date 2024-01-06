@@ -6,6 +6,9 @@ Matrices are **just** a way of expressing systems of linear equations.
 Definition
 ----------
 
+Single system of equations
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following system of ``ì`` number of linear equations with
 ``j`` number of terms:
 
@@ -56,10 +59,73 @@ Is totally equvalent to the following multiplication of matrices:
 
 Where:
 
--  `c^i_j` are **coefficients**
--  `x^j` are **inputs**
--  `y^i` are **outputs**
--  Products of `c^i_j x_j` are **terms**
+-  :math:`c^i_j` are **coefficients**
+-  :math:`x^j` are **inputs**
+-  :math:`y^i` are **outputs**
+-  Products :math:`c^i_j * x_j` are **terms**
+
+Multiple systems of equations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If there are multple systems of equations with identical
+set of :math:`c^i_j` **coefficients** that look as follows:
+
+.. math::
+
+    \begin{cases}
+    c^1_1 * x_{1/1} + \dots + c^1_j * x_{1/j} = y^1_1
+
+    \dots
+
+    c^1_1 * x_{1/1} + \dots + c^1_j * x_{1/j} = y^i_1
+    \end{cases}
+
+    \dots
+
+    \begin{cases}
+    c^1_1 * x_{e/1} + \dots + c^1_j * x_{e/j} = y^1_e
+
+    \dots
+
+    c^i_1 * x_{e/1} + \dots + c^i_j * x_{e/j} = y^i_e
+    \end{cases}
+
+It is identical to the following multiplication of matrices:
+
+.. math::
+
+    \begin{bmatrix}
+    c^1_1 & \dots & c^1_j
+    \\
+    \dots
+    \\
+    c^i_1 & \dots & c^i_j
+    \end{bmatrix}
+    \begin{bmatrix}
+    x_{1/1} & \dots & x_{e/1}
+    \\
+    \dots
+    \\
+    x_{1/j} & \dots & x_{e/j}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    y^1_1 & \dots & y^1_e
+    \\
+    \dots
+    \\
+    y^i_1 & \dots & y^i_e
+    \end{bmatrix}
+
+Where:
+
+-  :math:`x_{e/j}` are **inputs** of a particular ``e`` equation
+-  :math:`y_e` are **outputs** of a particular ``e`` equation
+
+The following animation illustrates the equivalency:
+
+.. video:: assets/equations-to-matrices.mp4
+    :width: 640
 
 Extra terms
 -----------

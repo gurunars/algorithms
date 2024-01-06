@@ -10,7 +10,7 @@ Given a collection of :math:`xy` pairs, where:
   i.e.: :math:`xy[i].x[j]` is the individual feature
 - :math:`xy[i].y` is a matching output (aka label)
 
-, deduce a :doc:`model function <model-function>` :math:`f(x)` for which
+, deduce a model function :math:`f(x)` for which
 the deviation between its prediction and the respective outputs :math:`y`
 is the minimal.
 
