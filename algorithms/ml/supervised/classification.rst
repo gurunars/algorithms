@@ -40,8 +40,8 @@ a `boundary`:
 
     verdict: bool = g(...) >= boundary
 
-Cost function
--------------
+Cost function (transformed)
+---------------------------
 
 The function for linear regression is non-convex in case of
 classification. To avoid too many local optimums a different

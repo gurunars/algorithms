@@ -9,7 +9,11 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.graphviz',
     'sphinx.ext.autosectionlabel',
-    'sphinx.ext.mathjax'
+    'sphinx.ext.mathjax',
+    "sphinxcontrib.video",
 ]
 plantuml = 'java -jar ../.utils/plantuml.jar'
 html_show_sphinx = False
+rawfiles = [
+    "maths/assets"
+]

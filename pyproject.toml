@@ -7,6 +7,7 @@ authors = ["Anton Berezin <gurunars@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.11"
 numpy = "^1.26.2"
+sympy = "^1.12"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.4.3"
@@ -18,6 +19,7 @@ sphinx-rtd-theme = "^2.0.0"
 esbonio = "^0.16.3"
 doc8 = "^1.1.1"
 rstcheck = "^6.2.0"
+sphinxcontrib-video = "^0.2.0"
 
 [tool.pyright]
 include = ["algorithms"]
