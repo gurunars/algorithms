@@ -11,6 +11,8 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.mathjax',
     "sphinxcontrib.video",
+    'extensions.sympy_output',
+    'sphinxcontrib.rawfiles'
 ]
 plantuml = 'java -jar ../.utils/plantuml.jar'
 html_show_sphinx = False

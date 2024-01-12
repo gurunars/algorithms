@@ -133,4 +133,3 @@ Extra terms
 A single column matrix is also called a **column vector**.
 
 A single row matrix is also called a **row vector**.
-

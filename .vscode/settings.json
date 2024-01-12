@@ -20,7 +20,7 @@
         "cses"
     ],
     "python.testing.unittestEnabled": false,
-    "restructuredtext.syntaxHighlighting.disabled": true,
+    "restructuredtext.syntaxHighlighting.disabled": false,
     "esbonio.sphinx.confDir": "${workspaceFolder}/algorithms",
     "esbonio.sphinx.buildDir": "${workspaceFolder}/build",
     "esbonio.sphinx.srcDir": "${workspaceFolder}/algorithms",
@@ -28,6 +28,8 @@
     "restructuredtext.linter.rstcheck.executablePath": "${workspaceFolder}/.venv/bin/rstcheck",
     "restructuredtext.linter.rst-lint.executablePath": "${workspaceFolder}/.venv/bin/rst-lint",
     "restructuredtext.linter.run": "onType",
+    "restructuredtext.preview.name": "sphinx",
+    "restructuredtext.preview.docutils.disabled": true,
     "files.trimTrailingWhitespace": true,
     "editor.renderWhitespace": "all"
 }
