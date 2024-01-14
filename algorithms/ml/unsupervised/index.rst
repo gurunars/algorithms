@@ -1,0 +1,6 @@
+Unupervised
+===========
+
+.. toctree::
+
+    clustering
