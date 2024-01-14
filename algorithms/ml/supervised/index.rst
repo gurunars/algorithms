@@ -8,3 +8,5 @@ Supervised
    classification
    linear-regression
    term-substitution-example
+   neural-networks
+   random-forest
