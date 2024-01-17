@@ -6,3 +6,4 @@ Maths
    derivation
    matrices
    vectors
+   normal-distribution
