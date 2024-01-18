@@ -26,11 +26,10 @@ sphinxcontrib-rawfiles = "^0.1.1"
 include = ["algorithms"]
 exclude = ["**/__pycache__"]
 pythonVersion = "3.11"
-pythonPlatform = "MacOS"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.rstcheck]
-ignore_directives = ["sympy-output"]
+ignore_directives = ["dynamic-content"]
