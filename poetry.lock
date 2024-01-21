@@ -308,6 +308,22 @@ test = ["mock", "pytest", "pytest-cov", "pytest-lsp (>=0.3.1)", "pytest-timeout"
 typecheck = ["mypy", "pytest-lsp (>=0.3.1)", "types-appdirs", "types-docutils", "types-pygments"]
 
 [[package]]
+name = "graphviz"
+version = "0.20.1"
+description = "Simple Python interface for Graphviz"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "graphviz-0.20.1-py3-none-any.whl", hash = "sha256:587c58a223b51611c0cf461132da386edd896a029524ca61a1462b880bf97977"},
+    {file = "graphviz-0.20.1.zip", hash = "sha256:8c58f14adaa3b947daf26c19bc1e98c4e0702cdc31cf99153e6f06904d492bf8"},
+]
+
+[package.extras]
+dev = ["flake8", "pep8-naming", "tox (>=3)", "twine", "wheel"]
+docs = ["sphinx (>=5)", "sphinx-autodoc-typehints", "sphinx-rtd-theme"]
+test = ["coverage", "mock (>=4)", "pytest (>=7)", "pytest-cov", "pytest-mock (>=3)"]
+
+[[package]]
 name = "idna"
 version = "3.6"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -1281,4 +1297,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b208f3fa8d51e3edf893b8e76135a812cfa685e9d1c1673847d4dc82aa9047d1"
+content-hash = "4cf8de6087089f18b800207f1f1442b17b0eca5828f9ddb4a820e265936a3d69"

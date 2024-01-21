@@ -8,6 +8,7 @@ authors = ["Anton Berezin <gurunars@gmail.com>"]
 python = "^3.11"
 numpy = "^1.26.2"
 sympy = "^1.12"
+graphviz = "^0.20.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.4.3"
