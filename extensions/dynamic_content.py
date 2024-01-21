@@ -2,7 +2,7 @@ import os
 
 from docutils import nodes
 
-from typing import List, Any
+from typing import List, Any, Optional
 from types import ModuleType
 
 from sphinx.application import Sphinx
@@ -91,7 +91,7 @@ class LaconicPrinter(LatexPrinter):
             return ""
 
 
-def get_mathjax(expr: Any) -> str:
+def get_sympy_mathjax(expr: Any) -> str:
     res = LaconicPrinter().doprint(expr) # type: ignore
     return f"""
         <div class="math notranslate nohighlight">\\[
@@ -105,8 +105,13 @@ def visit_sympy_node_html(translator: SphinxTranslator, node: DynamicContent) ->
 
 
 def render(expression: Any) -> str:
-    print("EXP", expression)
-    return "unknown"
+    mod: Optional[str] = getattr(type(expression), "__module__", None)
+    if mod is None:
+        return f"UNKNOWN({expression})"
+    elif mod.startswith("sympy"):
+        return get_sympy_mathjax(expression)
+    else:
+        return str(expression)
 
 
 class DynamicContentExt(SphinxDirective):
