@@ -19,7 +19,11 @@ class DynamicContent(nodes.General, nodes.Element):
 MODULE_NAME = "lazy_import"
 
 
-def _load_from_path(path: str) -> List[Any]:
+def _load_from_path(path: str) -> Any:
+    parts = path.split(":", 1)
+    path = parts[0]
+    var_name = parts[1] if len(parts) > 1 else "out"
+
     module_spec = spec_from_file_location(MODULE_NAME, path)
     if module_spec is None:
         return []
@@ -28,21 +32,13 @@ def _load_from_path(path: str) -> List[Any]:
         return []
     module = module_from_spec(module_spec)
     loader.exec_module(module)
-    return _import(module)
+    return getattr(module, var_name)
 
 
-def _load_from_content(content: str) -> List[Any]:
+def _load_from_content(content: str) -> Any:
     module = ModuleType(MODULE_NAME, '')
     exec(content, module.__dict__)
-    return _import(module)
-
-
-def _import(module: ModuleType) -> List[Any]:
-    return [
-        getattr(module, it)
-        for it in dir(module)
-        if it.startswith("out")
-    ]
+    return getattr(module, "out")
 
 
 def intToRoman(num: int):
@@ -67,7 +63,8 @@ def intToRoman(num: int):
 
 class LaconicPrinter(LatexPrinter):
 
-    def _as_ordered_terms(self, expr: Add, order=None):
+    def _as_ordered_terms(self, expr: Add, order=None): # type: ignore
+        _ = order # type: ignore
         return sorted(
             expr.args,
             key=lambda term: term.could_extract_minus_sign()
@@ -104,30 +101,34 @@ def get_mathjax(expr: Any) -> str:
 
 
 def visit_sympy_node_html(translator: SphinxTranslator, node: DynamicContent) -> None:
-    for expr in node["expressions"]:
-        translator.body.append(expr)
+    translator.body.append(node["expression"])
 
 
-class Sympy(SphinxDirective):
+def render(expression: Any) -> str:
+    print("EXP", expression)
+    return "unknown"
+
+
+class DynamicContentExt(SphinxDirective):
 
     has_content: bool = True
     required_arguments: int = 0
 
     def run(self) -> List[DynamicContent]:
         if len(self.content) == 1:
-            expressions = _load_from_path(os.path.join(
+            expression = _load_from_path(os.path.join(
                 self.env.srcdir,
                 os.path.dirname(self.env.docname),
                 self.content[0]
             ))
         elif self.content:
-            expressions = _load_from_content("\n".join(self.content))
+            expression = _load_from_content("\n".join(self.content))
         else:
             raise ValueError("Either path or content must be specified")
         self.env.app.add_js_file(
             "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
         )
-        return [DynamicContent(expressions = [get_mathjax(it) for it in expressions])]
+        return [DynamicContent(expression = render(expression))]
 
 
 def setup(app: Sphinx):
@@ -135,7 +136,7 @@ def setup(app: Sphinx):
         node = DynamicContent,
         html = (visit_sympy_node_html, lambda *_: None), # type: ignore
     )
-    app.add_directive("dynamic-content", Sympy)
+    app.add_directive("dynamic-content", DynamicContentExt)
     return {
         'version': '0.1',
         'parallel_read_safe': True,

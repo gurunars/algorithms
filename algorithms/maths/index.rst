@@ -3,6 +3,7 @@ Maths
 
 .. toctree::
 
+   number-theory/index
    derivation
    matrices
    vectors
