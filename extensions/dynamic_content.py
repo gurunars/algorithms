@@ -105,6 +105,8 @@ def visit_sympy_node_html(translator: SphinxTranslator, node: DynamicContent) ->
 
 
 def render(expression: Any) -> str:
+    if isinstance(expression, str):
+        return expression
     mod: Optional[str] = getattr(type(expression), "__module__", None)
     if mod is None:
         return f"UNKNOWN({expression})"
