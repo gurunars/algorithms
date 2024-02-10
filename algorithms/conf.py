@@ -19,3 +19,4 @@ html_show_sphinx = False
 rawfiles = [
     "maths/assets"
 ]
+suppress_warnings = ['autosectionlabel.*']

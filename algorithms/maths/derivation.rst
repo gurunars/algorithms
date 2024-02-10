@@ -112,3 +112,45 @@ Partial derivative for :math:`x` in a general sense is:
     f_{x}'(x,y,z) = \lim_{\Delta{x} \to 0}\frac{((x+\Delta{x})^2 + 3y^3 - 2z) - (x^2 + 3y^3 - 2z)}{\Delta{x}}
 
     f_{x}'(x,y,z) = 2x
+
+Chain rule
+----------
+
+A derivative of the invocation chain is
+a product of derivatives of each of the elements in
+the chain.
+
+.. math::
+
+    f(x) = g(h(x))
+
+    f'(x) = g'(h(x)) * h'(x)
+
+Example
+^^^^^^^
+
+Given:
+
+.. math::
+
+    f(x) = e ^ {g(x)}
+
+    g(x) = sin(h(x))
+
+    h(x) = x^2
+
+The derivative :math:`f'(x)` is:
+
+.. math::
+
+    f'(x) = e ^ {sin(g(x))} \cdot g'(x)
+
+    g'(x) = cos(h(x)) \cdot h'(x)
+
+    h'(x) = 2x
+
+Or if inlined:
+
+.. math::
+
+    f'(x) = e ^ {sin(x^2)} \cdot cos(x^2) \cdot 2x
