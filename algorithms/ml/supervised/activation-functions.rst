@@ -26,11 +26,11 @@ Activation functions
      -
    * - Logistic (Sigmoid)
      - :math:`f(z) = \frac{1}{1 + e^{-z}}`
-     - :math:`f(z) = f(x)(1 - f(x))`
+     - :math:`f'(z) = f(x)(1 - f(x))`
      -
    * - TanH (Hyperbolic Tangent)
      - :math:`f(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}`
-     -
+     - :math:`f'(z) = 1 - f(z)^2`
      -
    * - ArcTan
      -
