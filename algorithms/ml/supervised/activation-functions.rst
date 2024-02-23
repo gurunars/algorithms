@@ -29,7 +29,7 @@ Activation functions
      - :math:`f(z) = f(x)(1 - f(x))`
      -
    * - TanH (Hyperbolic Tangent)
-     -
+     - :math:`f(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}`
      -
      -
    * - ArcTan
