@@ -3,6 +3,8 @@ Supervised
 
 .. toctree::
 
+   activation-functions
+   regressions
    gradient-descent
    scaling
    classification
