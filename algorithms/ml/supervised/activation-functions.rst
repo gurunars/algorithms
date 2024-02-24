@@ -12,7 +12,13 @@ Activation functions
    * - Identity
      - :math:`z`
      - :math:`1`
-     -
+     - .. plot::
+
+        from sympy import symbols
+        from sympy.plotting import plot
+        z = symbols('z')
+        f = z
+        plot(f)
    * - RelU (Rectified Linear Unit)
      - .. math::
          \begin{cases}
@@ -26,7 +32,13 @@ Activation functions
            \\
            1 & (z \ge 0)
          \end{cases}
-     -
+     - .. plot::
+
+        from sympy import symbols, Max
+        from sympy.plotting import plot
+        z = symbols('z')
+        f = Max(0, z)
+        plot(f)
    * - Logistic (Sigmoid)
      - :math:`\frac{1}{1 + e^{-z}}`
      - :math:`g(z)(1 - g(z))`

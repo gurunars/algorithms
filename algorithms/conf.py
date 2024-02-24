@@ -12,7 +12,8 @@ extensions = [
     'sphinx.ext.mathjax',
     "sphinxcontrib.video",
     'extensions.dynamic_content',
-    'sphinxcontrib.rawfiles'
+    'sphinxcontrib.rawfiles',
+    'matplotlib.sphinxext.plot_directive'
 ]
 plantuml = 'java -jar ../.utils/plantuml.jar'
 html_show_sphinx = False
