@@ -4,7 +4,7 @@ from typing import List, Any
 
 from sympy import (
     Symbol, Function, diff, exp,
-    Piecewise, log
+    Piecewise, ln
 )
 
 from extensions.dynamic_content import get_sympy_mathjax as jax
@@ -66,7 +66,7 @@ functions: List[FunctionDef] = [
     ),
     FunctionDef(
         "SoftPlus",
-        log(1 + exp(z))
+        ln(1 + exp(z))
     )
 ]
 
