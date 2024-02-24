@@ -20,3 +20,4 @@ rawfiles = [
     "maths/assets"
 ]
 suppress_warnings = ['autosectionlabel.*']
+mathjax3_config = {'chtml': {'displayAlign': 'left'}}
