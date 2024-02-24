@@ -3,7 +3,6 @@ Activation functions
 
 .. dynamic-content:: activation_functions.py
 
-
 .. list-table::
    :widths: 1 1 1 1
    :header-rows: 1
