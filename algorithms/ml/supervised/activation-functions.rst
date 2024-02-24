@@ -1,6 +1,10 @@
 Activation functions
 ====================
 
+.. dynamic-content::
+
+  out = "<b>FOO</b>"
+
 .. list-table::
    :widths: 1 1 1 1
    :header-rows: 1

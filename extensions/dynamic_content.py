@@ -122,7 +122,7 @@ class DynamicContentExt(SphinxDirective):
     required_arguments: int = 0
 
     def run(self) -> List[DynamicContent]:
-        if len(self.content) == 1:
+        if len(self.content) == 1 and self.content[0].endswith(".py"):
             expression = _load_from_path(os.path.join(
                 self.env.srcdir,
                 os.path.dirname(self.env.docname),
