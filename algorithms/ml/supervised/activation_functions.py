@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 
-from typing import List, Any
+from typing import List, Any, Optional
 
 from sympy import (
     Symbol, Function, diff, exp,
-    Piecewise, ln
+    Piecewise, ln, factor
 )
 
 from extensions.dynamic_content import get_sympy_mathjax as jax
@@ -18,10 +18,15 @@ z = Symbol("z")
 
 alpha = Symbol(r"\alpha")
 
+g = Function("g")(z)
+
+
 @dataclass
 class FunctionDef:
     name: str
     formula: Any
+    derivative: Optional[Any] = None
+
 
 functions: List[FunctionDef] = [
     FunctionDef(
@@ -37,11 +42,13 @@ functions: List[FunctionDef] = [
     ),
     FunctionDef(
         "Logistic (Sigmoid)",
-        1 / (1 + exp(-z))
+        1 / (1 + exp(-z)),
+        derivative=g*(1 - g)
     ),
     FunctionDef(
         "TanH (Hyperbolic Tangent)",
-        (exp(z) - exp(-z)) / (exp(z) + exp(-z))
+        (exp(z) - exp(-z)) / (exp(z) + exp(-z)),
+        derivative=1 - g**2
     ),
     FunctionDef(
         "Leaky (Parametric) RelU",
@@ -75,7 +82,7 @@ def row(func: FunctionDef):
     <tr>
         <td>{func.name}</td>
         <td>{jax(func.formula)}</td>
-        <td>{jax(diff(func.formula, z))}</td>
+        <td>{jax(func.derivative or diff(func.formula, z))}</td>
         <td></td>
     </tr>
     """
@@ -86,7 +93,7 @@ out = f"""
 <table class="docutils align-default">
     <tr>
         {header("Name")}
-        {header(jax(Function("g")(z)))}
+        {header(jax(g))}
         {header(jax(Function("g'")(z)))}
         {header("Plot")}
     </tr>
