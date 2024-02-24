@@ -14,6 +14,10 @@ def header(content: str) -> str:
     return f'<th style="font-size: 1.2em;" align="left">{content}</th>'
 
 
+def td(content: str) -> str:
+    return f'<td style="font-size: 1.1em;" >{content}</td>'
+
+
 z = Symbol("z")
 
 alpha = Symbol(r"\alpha")
@@ -80,9 +84,9 @@ functions: List[FunctionDef] = [
 def row(func: FunctionDef):
     return f"""
     <tr>
-        <td>{func.name}</td>
-        <td>{jax(func.formula)}</td>
-        <td>{jax(func.derivative or diff(func.formula, z))}</td>
+        {td(func.name)}
+        {td(jax(func.formula))}
+        {td(jax(func.derivative or diff(func.formula, z)))}
         <td></td>
     </tr>
     """
