@@ -32,6 +32,7 @@ def row(func: FunctionDef):
     </tr>
     """
 
+ROWS = "\n".join(row(it) for it in functions)
 
 out = f"""
 <table class="docutils align-default">
@@ -41,10 +42,6 @@ out = f"""
         {header(jax(Function("g'")(z)))}
         {header("Plot")}
     </tr>
-    {
-        "\n".join(
-            row(it) for it in functions
-        )
-    }
+    {ROWS}
 </table>
 """
