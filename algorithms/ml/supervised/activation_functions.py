@@ -2,7 +2,10 @@ from dataclasses import dataclass
 
 from typing import List, Any
 
-from sympy import Symbol, Function, diff
+from sympy import (
+    Symbol, Function, diff, exp,
+    Piecewise
+)
 
 from extensions.dynamic_content import get_sympy_mathjax as jax
 
@@ -19,7 +22,21 @@ class FunctionDef:
     formula: Any
 
 functions: List[FunctionDef] = [
-    FunctionDef("Identity", z)
+    FunctionDef(
+        "Identity",
+        z
+    ),
+    FunctionDef(
+        "RelU (Rectified Linear Unit)",
+        Piecewise(
+            (0, z < 0),
+            (z, z >= 0)
+        )
+    ),
+    FunctionDef(
+        "Logistic (Sigmoid)",
+        1 / (1 + exp(-z))
+    )
 ]
 
 def row(func: FunctionDef):
