@@ -1,9 +1,8 @@
 Activation functions
 ====================
 
-.. dynamic-content::
+.. dynamic-content:: activation_functions.py
 
-  out = "<b>FOO</b>"
 
 .. list-table::
    :widths: 1 1 1 1
