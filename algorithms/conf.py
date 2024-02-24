@@ -22,3 +22,5 @@ rawfiles = [
 ]
 suppress_warnings = ['autosectionlabel.*']
 mathjax3_config = {'chtml': {'displayAlign': 'left'}}
+plot_html_show_source_link = False
+plot_html_show_formats = False
