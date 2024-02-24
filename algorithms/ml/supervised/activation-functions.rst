@@ -14,11 +14,11 @@ Activation functions
      - :math:`1`
      - .. plot::
 
-        from sympy import symbols
-        from sympy.plotting import plot
-        z = symbols('z')
-        f = z
-        plot(f)
+        from extensions.sympy_plot import sympy_plot
+
+        sympy_plot(
+          lambda z: z
+        )
    * - RelU (Rectified Linear Unit)
      - .. math::
          \begin{cases}
@@ -34,11 +34,12 @@ Activation functions
          \end{cases}
      - .. plot::
 
-        from sympy import symbols, Max
-        from sympy.plotting import plot
-        z = symbols('z')
-        f = Max(0, z)
-        plot(f)
+        from sympy import Max
+        from extensions.sympy_plot import sympy_plot
+
+        sympy_plot(
+          lambda z: Max(0, z)
+        )
    * - Logistic (Sigmoid)
      - :math:`\frac{1}{1 + e^{-z}}`
      - :math:`g(z)(1 - g(z))`
