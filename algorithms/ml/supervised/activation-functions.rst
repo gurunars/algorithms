@@ -6,8 +6,8 @@ Activation functions
    :header-rows: 1
 
    * - Name
-     - :math:`f(z)`
-     - :math:`f'(z)`
+     - :math:`g(z)`
+     - :math:`g'(z)`
      - Plot
    * - Identity
      - :math:`z`
@@ -29,15 +29,34 @@ Activation functions
      -
    * - Logistic (Sigmoid)
      - :math:`\frac{1}{1 + e^{-z}}`
-     - :math:`f(z)(1 - f(z))`
+     - :math:`g(z)(1 - g(z))`
      -
    * - TanH (Hyperbolic Tangent)
      - :math:`\frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}`
-     - :math:`1 - f(z)^2`
+     - :math:`1 - g(z)^2`
+     -
+   * - Leaky RelU
+     - .. math::
+         \begin{cases}
+           0.01z & (z \lt 0)
+           \\
+           z & (z \ge 0)
+         \end{cases}
+     - .. math::
+         \begin{cases}
+           0.01 & (z \lt 0)
+           \\
+           1 & (z \ge 0)
+         \end{cases}
      -
    * - Binary step
-     -
-     -
+     - .. math::
+         \begin{cases}
+           0 & (z \lt 0)
+           \\
+           1 & (z \ge 0)
+         \end{cases}
+     - :math:`0`
      -
    * - Parametric RelU
      - .. math::
@@ -64,7 +83,7 @@ Activation functions
          \end{cases}
      - .. math::
          \begin{cases}
-           f(z) + \alpha & (z \lt 0)
+           g(z) + \alpha & (z \lt 0)
            \\
            1 & (z \ge 0)
          \end{cases}
@@ -72,8 +91,4 @@ Activation functions
    * - SoftPlus
      - :math:`ln(1 + e^z)`
      - :math:`\frac{1}{1 + e^z}`
-     -
-   * - Sign (Signum)
-     -
-     -
      -
