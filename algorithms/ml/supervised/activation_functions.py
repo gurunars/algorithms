@@ -36,6 +36,10 @@ functions: List[FunctionDef] = [
     FunctionDef(
         "Logistic (Sigmoid)",
         1 / (1 + exp(-z))
+    ),
+    FunctionDef(
+        "TanH (Hyperbolic Tangent)",
+        (exp(z) - exp(-z)) / (exp(z) + exp(-z))
     )
 ]
 
