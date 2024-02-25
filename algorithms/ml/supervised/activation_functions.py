@@ -63,7 +63,7 @@ functions: List[FunctionDef] = [
         Piecewise(
             (alpha * z, z < 0),
             (z, z >= 0)
-        )
+        ),
     ),
     FunctionDef(
         "Binary step",
@@ -86,7 +86,7 @@ functions: List[FunctionDef] = [
 ]
 
 def row(func: FunctionDef):
-    p = plot(z, func.formula)
+    p = plot(z, func.formula.subs(alpha, 0.01))
     p.save("test.png")
     return f"""
     <tr>
