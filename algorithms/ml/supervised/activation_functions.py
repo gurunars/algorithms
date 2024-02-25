@@ -2,6 +2,10 @@ from dataclasses import dataclass
 
 from typing import List, Any, Optional
 
+from matplotlib.pyplot import savefig
+
+from sympy.plotting.plot import plot
+
 from sympy import (
     Symbol, Function, diff, exp,
     Piecewise, ln
@@ -82,6 +86,8 @@ functions: List[FunctionDef] = [
 ]
 
 def row(func: FunctionDef):
+    p = plot(z, func.formula)
+    p.save("*.svg")
     return f"""
     <tr>
         {td(func.name)}
