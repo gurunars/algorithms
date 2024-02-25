@@ -4,7 +4,7 @@ from typing import List, Any, Optional
 
 from sympy import (
     Symbol, Function, diff, exp,
-    Piecewise, ln, factor
+    Piecewise, ln
 )
 
 from extensions.dynamic_content import get_sympy_mathjax as jax
@@ -98,7 +98,7 @@ out = f"""
     <tr>
         {header("Name")}
         {header(jax(g))}
-        {header(jax(Function("g'")(z)))}
+        {header(jax(diff(g)))}
         {header("Plot")}
     </tr>
     {ROWS}
