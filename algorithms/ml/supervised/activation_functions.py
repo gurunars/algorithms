@@ -11,7 +11,7 @@ from sympy import (
     Piecewise, ln
 )
 
-from extensions.dynamic_content import get_sympy_mathjax as jax
+from extensions.dynamic_content import get_sympy_mathjax as jax, image_path
 
 
 def header(content: str) -> str:
@@ -87,7 +87,8 @@ functions: List[FunctionDef] = [
 
 def row(func: FunctionDef):
     p = plot(z, func.formula.subs(alpha, 0.01))
-    p.save("test.png")
+    path = image_path(__file__, func.name, "png")
+    p.save(path)
     return f"""
     <tr>
         {td(func.name)}

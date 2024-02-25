@@ -10,6 +10,8 @@ from sphinx.util.docutils import SphinxDirective, SphinxTranslator
 from sympy import Derivative, Function, Add
 from sympy.printing.latex import LatexPrinter
 
+from hashlib import sha256
+
 from importlib.util import spec_from_file_location, module_from_spec
 
 class DynamicContent(nodes.General, nodes.Element):
@@ -17,6 +19,26 @@ class DynamicContent(nodes.General, nodes.Element):
 
 
 MODULE_NAME = "lazy_import"
+
+ENV_OUT = "DYNAMIC_CONTENT_OUTDIR"
+
+ENV_IN = "DYNAMIC_CONTENT_INDIR"
+
+
+def drop_prefix(inp: str, prefix: str) -> str:
+    if inp.startswith(prefix):
+        return inp[len(prefix):]
+    else:
+        return inp
+
+
+def image_path(file_name: str, name: str, ext: str):
+    root_out = os.environ[ENV_OUT]
+    root_in = os.environ[ENV_IN]
+    d = os.path.dirname(file_name)
+    rel_path = drop_prefix(d, f"{root_in}/")
+    gen_name = sha256(name.encode('ascii')).hexdigest()
+    return os.path.join(root_out, rel_path, f"{gen_name}.{ext}")
 
 
 def _load_from_path(path: str) -> Any:
@@ -139,6 +161,8 @@ class DynamicContentExt(SphinxDirective):
 
 
 def setup(app: Sphinx):
+    os.environ[ENV_OUT] = str(app.outdir)
+    os.environ[ENV_IN] = str(app.confdir)
     app.add_node( # type: ignore
         node = DynamicContent,
         html = (visit_sympy_node_html, lambda *_: None), # type: ignore
