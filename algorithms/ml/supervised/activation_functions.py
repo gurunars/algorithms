@@ -2,8 +2,6 @@ from dataclasses import dataclass
 
 from typing import List, Any, Optional
 
-from matplotlib.pyplot import savefig
-
 from sympy.plotting.plot import plot
 
 from sympy import (
@@ -86,7 +84,7 @@ functions: List[FunctionDef] = [
 ]
 
 def row(func: FunctionDef):
-    p = plot(z, func.formula.subs(alpha, 0.01))
+    p = plot(func.formula.subs(alpha, 0.01))
     path = image_path(__file__, func.name, "png")
     p.save(path)
     return f"""
