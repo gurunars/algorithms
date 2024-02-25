@@ -32,13 +32,22 @@ def drop_prefix(inp: str, prefix: str) -> str:
         return inp
 
 
+def drop_suffix(inp: str, prefix: str) -> str:
+    if inp.endswith(prefix):
+        return inp[:-len(prefix)]
+    else:
+        return inp
+
+
+
 def image_path(file_name: str, name: str, ext: str):
     root_out = os.environ[ENV_OUT]
     root_in = os.environ[ENV_IN]
-    d = os.path.dirname(file_name)
-    rel_path = drop_prefix(d, f"{root_in}/")
+    rel_path = drop_prefix(drop_suffix(file_name, ".py"), f"{root_in}/")
     gen_name = sha256(name.encode('ascii')).hexdigest()
-    return os.path.join(root_out, rel_path, f"{gen_name}.{ext}")
+    rel_root = os.path.join(root_out, rel_path)
+    os.makedirs(rel_root, exist_ok=True)
+    return os.path.join(rel_root, f"{gen_name}.{ext}")
 
 
 def _load_from_path(path: str) -> Any:
