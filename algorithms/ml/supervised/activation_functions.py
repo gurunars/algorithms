@@ -87,7 +87,7 @@ functions: List[FunctionDef] = [
 
 def row(func: FunctionDef):
     p = plot(z, func.formula)
-    p.save("*.svg")
+    p.save("test.png")
     return f"""
     <tr>
         {td(func.name)}
