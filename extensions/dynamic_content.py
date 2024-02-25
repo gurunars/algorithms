@@ -39,14 +39,12 @@ def drop_suffix(inp: str, prefix: str) -> str:
         return inp
 
 
-
 def image_path(file_name: str, name: str, ext: str):
     root_out = os.environ[ENV_OUT]
     root_in = os.environ[ENV_IN]
     rel_path = drop_prefix(drop_suffix(file_name, ".py"), f"{root_in}/")
     gen_name = sha256(name.encode('ascii')).hexdigest()
     rel_root = os.path.join(root_out, rel_path)
-    os.makedirs(rel_root, exist_ok=True)
     return os.path.join(rel_root, f"{gen_name}.{ext}")
 
 

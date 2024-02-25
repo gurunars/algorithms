@@ -1,8 +1,10 @@
+import os
+
 from dataclasses import dataclass
 
 from typing import List, Any, Optional
 
-from sympy.plotting.plot import plot
+from sympy.plotting.plot import plot, Plot
 
 from sympy import (
     Symbol, Function, diff, exp,
@@ -83,10 +85,17 @@ functions: List[FunctionDef] = [
     )
 ]
 
+
+def save(instance: Plot, path: str):
+    rel_root = os.path.dirname(path)
+    os.makedirs(rel_root, exist_ok=True)
+    instance.save(path)
+
+
 def row(func: FunctionDef):
     p = plot(func.formula.subs(alpha, 0.01))
     path = image_path(__file__, func.name, "png")
-    p.save(path)
+    save(p, path)
     return f"""
     <tr>
         {td(func.name)}
