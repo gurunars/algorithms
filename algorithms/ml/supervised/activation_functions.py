@@ -22,7 +22,7 @@ def header(content: str) -> str:
 
 
 def td(content: str) -> str:
-    return f'<td style="font-size: 1.1em;" >{content}</td>'
+    return f'<td>{content}</td>'
 
 
 z = Symbol("z")
@@ -104,7 +104,7 @@ def row(func: FunctionDef):
         {td(func.name)}
         {td(jax(func.formula))}
         {td(jax(func.derivative or diff(func.formula, z)))}
-        {td(f'<img src="{ref.url}" />')}
+        {td(f'<img src="{ref.url}" style="min-width: 240px;" />')}
     </tr>
     """
 
