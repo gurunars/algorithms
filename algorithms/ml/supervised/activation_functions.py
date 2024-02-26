@@ -104,7 +104,7 @@ def row(func: FunctionDef):
         {td(func.name)}
         {td(jax(func.formula))}
         {td(jax(func.derivative or diff(func.formula, z)))}
-        {td(f'<img src="{ref.url}" style="min-width: 240px;" />')}
+        {td(f'<img src="{ref.url}" style="max-width: 190px;" />')}
     </tr>
     """
 

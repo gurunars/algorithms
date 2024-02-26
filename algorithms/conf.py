@@ -24,3 +24,7 @@ suppress_warnings = ['autosectionlabel.*']
 mathjax3_config = {'chtml': {'displayAlign': 'left'}}
 plot_html_show_source_link = False
 plot_html_show_formats = False
+html_static_path = ['_static']
+
+def setup(app):
+    app.add_css_file('algorithms.css')
