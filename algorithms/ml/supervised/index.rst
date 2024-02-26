@@ -3,6 +3,7 @@ Supervised
 
 .. toctree::
 
+   neuron
    activation-functions
    regressions
    gradient-descent

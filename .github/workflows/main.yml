@@ -26,6 +26,9 @@ jobs:
       - name: Install poetry
         run: pip install poetry
 
+      - name: Setup graphviz
+        run: sudo apt install graphviz libgraphviz-dev
+
       - name: Build
         run: make
 

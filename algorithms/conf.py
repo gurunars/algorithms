@@ -20,6 +20,7 @@ html_show_sphinx = False
 rawfiles = [
     "maths/assets"
 ]
+html_show_sourcelink = False
 suppress_warnings = ['autosectionlabel.*']
 mathjax3_config = {'chtml': {'displayAlign': 'left'}}
 plot_html_show_source_link = False
