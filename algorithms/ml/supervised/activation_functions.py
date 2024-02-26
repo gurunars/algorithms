@@ -11,7 +11,10 @@ from sympy import (
     Piecewise, ln
 )
 
-from extensions.dynamic_content import get_sympy_mathjax as jax, image_path
+from extensions.dynamic_content import (
+    get_sympy_mathjax as jax,
+    local_image_file_ref as image_ref
+)
 
 
 def header(content: str) -> str:
@@ -94,14 +97,14 @@ def save(instance: Plot, path: str):
 
 def row(func: FunctionDef):
     p = plot(func.formula.subs(alpha, 0.01))
-    path = image_path(__file__, func.name, "png")
-    save(p, path)
+    ref = image_ref(__file__, func.name, "png")
+    save(p, ref.path)
     return f"""
     <tr>
         {td(func.name)}
         {td(jax(func.formula))}
         {td(jax(func.derivative or diff(func.formula, z)))}
-        <td></td>
+        {td(f'<img src="{ref.url}" />')}
     </tr>
     """
 
