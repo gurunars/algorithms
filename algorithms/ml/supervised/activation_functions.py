@@ -1,8 +1,8 @@
 import os
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
-from typing import List, Any, Optional
+from typing import List, Any, Optional, Iterable, Callable, ParamSpec, TypeVar
 
 from sympy.plotting.plot import plot, Plot
 
@@ -25,6 +25,24 @@ def td(content: str) -> str:
     return f'<td>{content}</td>'
 
 
+_P = ParamSpec("_P")
+_R = TypeVar("_R")
+
+
+def joint(producer: Callable[_P, Iterable[str]]) -> Callable[_P, str]:
+    def wrapper(*args, **kwargs) -> str: # type: ignore
+        return "\n".join(producer(*args, **kwargs))
+    return wrapper # type: ignore
+
+
+@joint
+def ul(usecases: list[str]) -> Iterable[str]:
+    yield "<ul>"
+    for usecase in usecases:
+        yield f"<li>{usecase}</li>"
+    yield "</ul>"
+
+
 z = Symbol("z")
 
 alpha = Symbol(r"\alpha")
@@ -37,12 +55,16 @@ class FunctionDef:
     name: str
     formula: Any
     derivative: Optional[Any] = None
+    usecases: list[str] = field(default_factory=list)
 
 
 functions: List[FunctionDef] = [
     FunctionDef(
         "Identity",
-        z
+        z,
+        usecases=[
+            "Identify multiple instances of specific classes (e.g. road signs on a road)"
+        ]
     ),
     FunctionDef(
         "RelU (Rectified Linear Unit)",
@@ -105,6 +127,7 @@ def row(func: FunctionDef):
         {td(jax(func.formula))}
         {td(jax(func.derivative or diff(func.formula, z)))}
         {td(f'<img src="{ref.url}" style="max-width: 190px;" />')}
+        {td(ul(func.usecases))}
     </tr>
     """
 
@@ -117,6 +140,7 @@ out = f"""
         {header(jax(g))}
         {header(jax(diff(g)))}
         {header("Plot")}
+        {header("Usecases")}
     </tr>
     {ROWS}
 </table>
