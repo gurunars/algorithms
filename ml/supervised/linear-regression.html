@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linear regression &mdash; Algorithms 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/algorithms.css?v=eb59b6a8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"chtml": {"displayAlign": "left"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Term substitution example" href="term-substitution-example.html" />
+    <link rel="prev" title="Classification" href="classification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Algorithms
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../maths/index.html">Maths</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">ML</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Supervised</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="neuron.html">Neuron</a></li>
+<li class="toctree-l3"><a class="reference internal" href="activation-functions.html">Activation functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regressions.html">Regressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradient-descent.html">Gradient descent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scaling.html">Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classification.html">Classification</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Linear regression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model-function">Model function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cost-function">Cost function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#regularization">Regularization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="term-substitution-example.html">Term substitution example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="neural-networks.html">Neural networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="random-forest.html">Random forest</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised/index.html">Unupervised</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Algorithms</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ML</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Supervised</a></li>
+      <li class="breadcrumb-item active">Linear regression</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="linear-regression">
+<h1>Linear regression<a class="headerlink" href="#linear-regression" title="Link to this heading"></a></h1>
+<section id="model-function">
+<h2>Model function<a class="headerlink" href="#model-function" title="Link to this heading"></a></h2>
+<p>The function is always a first order polynomial with <cite>j</cite> terms augumented by a <strong>bias</strong> parameter <cite>b</cite>:</p>
+<div class="math notranslate nohighlight">
+\[f(b, w, xy) = b + \sum_{j=0}^{|w|} w_j x_j\]</div>
+<p>Each <cite>j</cite>’th term is composed of a feature <span class="math notranslate nohighlight">\(x_j\)</span> and its coeficient (aka weight) <span class="math notranslate nohighlight">\(w_j\)</span> that
+effectively determines the respective feature’s significance.</p>
+<p>A <strong>bias</strong> <cite>b</cite> is there to accomodate for errors in measurements.</p>
+<p>In case if the model template has some higher order polynomials, they should
+be normalized in such a way that the terms are substituted with the first order
+equivalents.</p>
+<p>Examples should be enriched with computed values for each first order equivalent.</p>
+</section>
+<section id="cost-function">
+<h2>Cost function<a class="headerlink" href="#cost-function" title="Link to this heading"></a></h2>
+<p>Given a model function <span class="math notranslate nohighlight">\(f(x)\)</span> and the actual outcome <span class="math notranslate nohighlight">\(f(x)\)</span>
+determines the error factor between the prediction and the actual outcome.</p>
+<div class="math notranslate nohighlight">
+\[J(xy, f) = \frac{1}{|xy|}\sum_{i=0}^{|xy|}\frac{1}{2}(f(xy[i].x) - xy[i].y)^2\]</div>
+<p>A partial derrivative with respect to <span class="math notranslate nohighlight">\(w_j\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[J_{w_j}'(xy, f) =  \frac{1}{|xy|}\sum_{i=0}^{|xy|}(f(xy[i].x) - xy[i].y) * xy[i].x[j]\]</div>
+<p>A partial derrivative with respect to <span class="math notranslate nohighlight">\(b\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[J_{b}'(xy, f) = \frac{1}{|xy|}\sum_{i=0}^{|xy|}f(xy[i].x) - xy[i].y\]</div>
+</section>
+<section id="regularization">
+<h2>Regularization<a class="headerlink" href="#regularization" title="Link to this heading"></a></h2>
+<p>Fights against overfitting by penalizing too large values of <span class="math notranslate nohighlight">\(w_j\)</span>
+within a cost function.</p>
+<p>Due to the fact that it is unknown which <span class="math notranslate nohighlight">\(w_j\)</span> is more important,
+the regularization term needs to include all of them:</p>
+<div class="math notranslate nohighlight">
+\[r(w, xy, \lambda) = \frac{\lambda}{2|xy|}\sum_{i=0}^{|w|}w^2_j\]</div>
+<p>The term has to be appended to the original model function:</p>
+<div class="math notranslate nohighlight">
+\[{\sim}J(b, w, xy, \lambda) = J(b, w, xy) + r(w, xy, \lambda)\]</div>
+<p>A partial derrivative with respect to <span class="math notranslate nohighlight">\(w_j\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[{\sim}J'_j(b, w, xy, \lambda) =
+    \frac{\lambda}{|xy|} +
+    \frac{1}{|xy|}\sum_{i=0}^{|xy|}(f(xy[i].x) - xy[i].y) * xy[i].x[j]\]</div>
+<p><span class="math notranslate nohighlight">\(b\)</span> does not need regularization.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classification.html" class="btn btn-neutral float-left" title="Classification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="term-substitution-example.html" class="btn btn-neutral float-right" title="Term substitution example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Anton Berezin.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

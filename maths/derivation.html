@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Derivation &mdash; Algorithms 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/algorithms.css?v=eb59b6a8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"chtml": {"displayAlign": "left"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Matrices" href="matrices.html" />
+    <link rel="prev" title="Number theory" href="number-theory/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Algorithms
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Maths</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="number-theory/index.html">Number theory</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Derivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#meaning">Meaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-formula">General formula</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#st-degree-polynomyal">1st degree polynomyal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nd-degree-polynomyal">2nd degree polynomyal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#total-derivative">Total derivative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#partial-derivative">Partial derivative</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#chain-rule">Chain rule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="matrices.html">Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vectors.html">Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-distribution.html">Normal distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/index.html">ML</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Algorithms</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Maths</a></li>
+      <li class="breadcrumb-item active">Derivation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="derivation">
+<h1>Derivation<a class="headerlink" href="#derivation" title="Link to this heading"></a></h1>
+<section id="meaning">
+<h2>Meaning<a class="headerlink" href="#meaning" title="Link to this heading"></a></h2>
+<p>The rate of change of a function with respect to a variable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This document follows <a class="reference external" href="https://en.wikipedia.org/wiki/Notation_for_differentiation#Lagrange's_notation">Lagrange’s notation</a>.</p>
+</div>
+</section>
+<section id="general-formula">
+<h2>General formula<a class="headerlink" href="#general-formula" title="Link to this heading"></a></h2>
+<div class="math notranslate nohighlight">
+\[f'(x) = \lim_{\Delta{x} \to 0} \frac{f(x+\Delta{x}) - f(x)}{\Delta{x}}\]</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="st-degree-polynomyal">
+<h3>1st degree polynomyal<a class="headerlink" href="#st-degree-polynomyal" title="Link to this heading"></a></h3>
+<p>Given:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = 2x - 3\]</div>
+<p>Then:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f'(x) = \lim_{\Delta{x} \to 0} \frac{(2(x+\Delta{x}) - 3) - (2x - 3)}{\Delta{x}}\\f'(x) = \lim_{\Delta{x} \to 0} \frac{2x + 2\Delta{x} - 3 - 2x + 3}{\Delta{x}}\\f'(x) = \lim_{\Delta{x} \to 0} \frac{2\Delta{x}}{\Delta{x}}\\f'(x) = \lim_{\Delta{x} \to 0} 2\end{aligned}\end{align} \]</div>
+<p>And after replacing <span class="math notranslate nohighlight">\(\Delta{x}\)</span> with <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+<div class="math notranslate nohighlight">
+\[f'(x) = 2\]</div>
+</section>
+<section id="nd-degree-polynomyal">
+<h3>2nd degree polynomyal<a class="headerlink" href="#nd-degree-polynomyal" title="Link to this heading"></a></h3>
+<p>Given:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = 4x^2 + 3x + 11\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f'(x) = \lim_{\Delta{x} \to 0} \frac{(4(x+\Delta{x})^2 + 3(x+\Delta{x}) + 11) - (4x^2 + 3x + 11)}{\Delta{x}}\\f'(x) = \lim_{\Delta{x} \to 0} \frac{4(x^2 + 2x\Delta{x} + \Delta{x}^2) + 3x + 3\Delta{x} + 11 - 4x^2 - 3x - 11}{\Delta{x}}\\f'(x) = \lim_{\Delta{x} \to 0} \frac{4x^2 + 8x\Delta{x} + 4\Delta{x}^2 + 3x + 3\Delta{x} + 11 - 4x^2 - 3x - 11}{\Delta{x}}\\f'(x) = \lim_{\Delta{x} \to 0} \frac{8x\Delta{x} + 4\Delta{x}^2 + 3\Delta{x}}{\Delta{x}}\\f'(x) = \lim_{\Delta{x} \to 0} \frac{\Delta{x}(8x + 4\Delta{x} + 3)}{\Delta{x}}\\f'(x) = \lim_{\Delta{x} \to 0} 8x + 4\Delta{x} + 3\end{aligned}\end{align} \]</div>
+<p>And after replacing <span class="math notranslate nohighlight">\(\Delta{x}\)</span> with <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+<div class="math notranslate nohighlight">
+\[f'(x) = 8x + 3\]</div>
+</section>
+</section>
+<section id="total-derivative">
+<h2>Total derivative<a class="headerlink" href="#total-derivative" title="Link to this heading"></a></h2>
+<div class="math notranslate nohighlight">
+\[f'(x_1, \ldots, x_n) = \sum_{i=1}^{n} f_{x_i}'(x_1, \ldots, x_n)\]</div>
+</section>
+<section id="partial-derivative">
+<h2>Partial derivative<a class="headerlink" href="#partial-derivative" title="Link to this heading"></a></h2>
+<p>An expression:</p>
+<div class="math notranslate nohighlight">
+\[f_{x_i}'\]</div>
+<p>Means that only <span class="math notranslate nohighlight">\(x_i\)</span> is replaced with <span class="math notranslate nohighlight">\(x_i + \Delta{x_i}\)</span> during derivation.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h3>
+<p>Given:</p>
+<div class="math notranslate nohighlight">
+\[f(x,y,z) = x^2 + 3y^3 - 2z\]</div>
+<p>Partial derivative for <span class="math notranslate nohighlight">\(x\)</span> in a general sense is:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f_{x}'(x,y,z) = \lim_{\Delta{x} \to 0}\frac{f(x+\Delta{x},y,z) - f(x,y,z)}{\Delta{x}}\\f_{x}'(x,y,z) = \lim_{\Delta{x} \to 0}\frac{((x+\Delta{x})^2 + 3y^3 - 2z) - (x^2 + 3y^3 - 2z)}{\Delta{x}}\\f_{x}'(x,y,z) = 2x\end{aligned}\end{align} \]</div>
+</section>
+</section>
+<section id="chain-rule">
+<h2>Chain rule<a class="headerlink" href="#chain-rule" title="Link to this heading"></a></h2>
+<p>A derivative of the invocation chain is
+a product of derivatives of each of the elements in
+the chain.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f(x) = g(h(x))\\f'(x) = g'(h(x)) * h'(x)\end{aligned}\end{align} \]</div>
+<section id="id1">
+<h3>Example<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Given:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f(x) = e ^ {g(x)}\\g(x) = sin(h(x))\\h(x) = x^2\end{aligned}\end{align} \]</div>
+<p>The derivative <span class="math notranslate nohighlight">\(f'(x)\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f'(x) = e ^ {sin(g(x))} \cdot g'(x)\\g'(x) = cos(h(x)) \cdot h'(x)\\h'(x) = 2x\end{aligned}\end{align} \]</div>
+<p>Or if inlined:</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = e ^ {sin(x^2)} \cdot cos(x^2) \cdot 2x\]</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="number-theory/index.html" class="btn btn-neutral float-left" title="Number theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="matrices.html" class="btn btn-neutral float-right" title="Matrices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Anton Berezin.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
